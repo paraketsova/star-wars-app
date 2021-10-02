@@ -4,11 +4,13 @@ import './App.css';
 
 function App() {
   const [characters, setCharacters] = useState([]);
+  const [count, setCount] = useState();
 
   useEffect(() => {
     const getResults = async () => {
       const result = await axios('https://swapi.dev/api/people');
       setCharacters(result.data.results);
+      setCount(result.data.count);
     };
     getResults();
   }, []);
@@ -23,25 +25,29 @@ function App() {
         {characters.length === 0 ? (
           <p>Loading...</p>
         ) : (
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Gender</th>
-                <th>Birth year</th>
-              </tr>
-            </thead>
+          <>
+            <p>Total characters: {count}</p>
 
-            <tbody>
-              {characters.map(item => (
-                <tr key={item.url}>
-                  <td>{item.name}</td>
-                  <td>{item.gender}</td>
-                  <td>{item.birth_year}</td>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Gender</th>
+                  <th>Birth year</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+
+              <tbody>
+                {characters.map(item => (
+                  <tr key={item.url}>
+                    <td>{item.name}</td>
+                    <td>{item.gender}</td>
+                    <td>{item.birth_year}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
         )}
       </main>
     </div>
