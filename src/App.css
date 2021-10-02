@@ -18,3 +18,7 @@ th {
   background: #b0e0e6;
 }
 
+li {
+  display: inline;
+  margin-right: 1rem;
+}

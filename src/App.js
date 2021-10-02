@@ -15,6 +15,12 @@ function App() {
     getResults();
   }, []);
 
+  let maxPage = Math.ceil(count / 10);
+  let pages = [];
+  for (let i = 1; i <= maxPage; i++) {
+    pages.push(i);
+  }
+
   return (
     <div className="App">
       <header>
@@ -47,6 +53,12 @@ function App() {
                 ))}
               </tbody>
             </table>
+
+            <ul>
+              {pages.map(i => (
+                <li key={i}>{i}</li>
+              ))}
+            </ul>
           </>
         )}
       </main>
