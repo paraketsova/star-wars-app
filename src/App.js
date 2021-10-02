@@ -21,19 +21,23 @@ function App() {
 
       <main>
         <table>
-          <tr>
-            <th>Name</th>
-            <th>Gender</th>
-            <th>Birth year</th>
-          </tr>
-
-          {characters.map(item => (
+          <thead>
             <tr>
-              <td>{item.name}</td>
-              <td>{item.gender}</td>
-              <td>{item.birth_year}</td>
+              <th>Name</th>
+              <th>Gender</th>
+              <th>Birth year</th>
             </tr>
-          ))}
+          </thead>
+
+          <tbody>
+            {characters.map(item => (
+              <tr>
+                <td>{item.name}</td>
+                <td>{item.gender}</td>
+                <td>{item.birth_year}</td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </main>
     </div>
