@@ -20,25 +20,29 @@ function App() {
       </header>
 
       <main>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Gender</th>
-              <th>Birth year</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {characters.map(item => (
-              <tr key={item.url}>
-                <td>{item.name}</td>
-                <td>{item.gender}</td>
-                <td>{item.birth_year}</td>
+        {characters.length === 0 ? (
+          <p>Loading...</p>
+        ) : (
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Birth year</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+
+            <tbody>
+              {characters.map(item => (
+                <tr key={item.url}>
+                  <td>{item.name}</td>
+                  <td>{item.gender}</td>
+                  <td>{item.birth_year}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </main>
     </div>
   );
