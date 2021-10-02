@@ -31,7 +31,7 @@ function App() {
 
           <tbody>
             {characters.map(item => (
-              <tr>
+              <tr key={item.url}>
                 <td>{item.name}</td>
                 <td>{item.gender}</td>
                 <td>{item.birth_year}</td>
