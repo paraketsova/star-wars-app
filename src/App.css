@@ -22,3 +22,13 @@ li {
   display: inline;
   margin-right: 1rem;
 }
+
+button {
+  cursor: pointer;
+  border: 1px solid gray;
+  border-radius: 2px;
+  padding: 2px 7px;
+}
+button.active {
+  background-color: #b0e0e6;
+}

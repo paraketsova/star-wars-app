@@ -5,14 +5,17 @@ import './App.css';
 function App() {
   const [characters, setCharacters] = useState([]);
   const [count, setCount] = useState();
+  const [pageNumber, setPageNumber] = useState(1);
+
+  const getPage = async (i) => {
+    const result = await axios('https://swapi.dev/api/people/?page=' + i);
+    setCharacters(result.data.results);
+    setCount(result.data.count);
+    setPageNumber(i);
+  };
 
   useEffect(() => {
-    const getResults = async () => {
-      const result = await axios('https://swapi.dev/api/people');
-      setCharacters(result.data.results);
-      setCount(result.data.count);
-    };
-    getResults();
+    getPage(1);
   }, []);
 
   let maxPage = Math.ceil(count / 10);
@@ -33,6 +36,7 @@ function App() {
         ) : (
           <>
             <p>Total characters: {count}</p>
+            <p>Page number: {pageNumber}</p>
 
             <table>
               <thead>
@@ -56,7 +60,9 @@ function App() {
 
             <ul>
               {pages.map(i => (
-                <li key={i}>{i}</li>
+                <li key={i}>
+                  <button onClick={() => getPage(i)} className={i === pageNumber ? 'active' : ''}>{i}</button>
+                </li>
               ))}
             </ul>
           </>
