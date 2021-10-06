@@ -9,9 +9,12 @@ function App() {
   const [pageNumber, setPageNumber] = useState(1);
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [filterQuery, setFilterQuery] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const getApiData = async (page, query = '') => {
+    setLoading(true);
     const result = await axios('https://swapi.dev/api/people/?page=' + page + '&search=' + query);
+    setLoading(false);
     setCharacters(result.data.results);
     setCount(result.data.count);
     setPageNumber(page);
@@ -44,7 +47,7 @@ function App() {
       </header>
 
       <main>
-        {characters.length === 0 ? (
+        {loading ? (
           <p>Loading...</p>
         ) : (
           <>
@@ -53,41 +56,47 @@ function App() {
               <button type="submit">Filter</button>
             </form>
 
-            <p>Total characters: {count}</p>
-            <p>Page number: {pageNumber}</p>
+            {characters.length === 0 ? (
+              <p>Your search did not match any Star Wars characters.</p>
+            ) : (
+              <>
+                <p>Total characters: {count}</p>
+                <p>Page number: {pageNumber}</p>
 
-            <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Gender</th>
-                  <th>Birth year</th>
-                </tr>
-              </thead>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Gender</th>
+                      <th>Birth year</th>
+                    </tr>
+                  </thead>
 
-              <tbody>
-                {characters.map(item => (
-                  <tr key={item.url}>
-                    <td className="character-name" onClick={() => setSelectedCharacter(item)}>
-                      {item.name}
-                    </td>
-                    <td>{item.gender}</td>
-                    <td>{item.birth_year}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                  <tbody>
+                    {characters.map(item => (
+                      <tr key={item.url}>
+                        <td className="character-name" onClick={() => setSelectedCharacter(item)}>
+                          {item.name}
+                        </td>
+                        <td>{item.gender}</td>
+                        <td>{item.birth_year}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
 
-            <ul>
-              {pages.map(i => (
-                <li key={i}>
-                  <button onClick={() => getApiData(i)} className={i === pageNumber ? 'active' : ''}>{i}</button>
-                </li>
-              ))}
-            </ul>
+                <ul>
+                  {pages.map(i => (
+                    <li key={i}>
+                      <button onClick={() => getApiData(i)} className={i === pageNumber ? 'active' : ''}>{i}</button>
+                    </li>
+                  ))}
+                </ul>
 
-            {selectedCharacter !== null && (
-              <CharacterModal data={selectedCharacter} closeFn={() => setSelectedCharacter(null)}/>
+                {selectedCharacter !== null && (
+                  <CharacterModal data={selectedCharacter} closeFn={() => setSelectedCharacter(null)}/>
+                )}
+              </>
             )}
           </>
         )}
