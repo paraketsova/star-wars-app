@@ -11,7 +11,7 @@ function App() {
   const [filterQuery, setFilterQuery] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const getApiData = async (page, query = '') => {
+  const getApiData = async (page, query = filterQuery) => {
     setLoading(true);
     const result = await axios('https://swapi.dev/api/people/?page=' + page + '&search=' + query);
     setLoading(false);
@@ -27,17 +27,17 @@ function App() {
 
   const onFilterSubmit = event => {
     event.preventDefault();
-    getApiData(1, filterQuery);
+    getApiData(1);
   };
 
   const resetFilter = () => {
     setFilterQuery('');
-    getApiData(1);
+    getApiData(1, '');
   };
 
   useEffect(() => {
     getApiData(1);
-  }, []);
+  }, []); // eslint-disable-line
 
   let maxPage = Math.ceil(count / 10);
   let pages = [];
