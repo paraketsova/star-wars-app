@@ -1,17 +1,20 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
+import CharacterModal from './components/CharacterModal';
 
 function App() {
   const [characters, setCharacters] = useState([]);
   const [count, setCount] = useState();
   const [pageNumber, setPageNumber] = useState(1);
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
 
   const getPage = async (i) => {
     const result = await axios('https://swapi.dev/api/people/?page=' + i);
     setCharacters(result.data.results);
     setCount(result.data.count);
     setPageNumber(i);
+    setSelectedCharacter(null);
   };
 
   useEffect(() => {
@@ -50,7 +53,9 @@ function App() {
               <tbody>
                 {characters.map(item => (
                   <tr key={item.url}>
-                    <td>{item.name}</td>
+                    <td className="character-name" onClick={() => setSelectedCharacter(item)}>
+                      {item.name}
+                    </td>
                     <td>{item.gender}</td>
                     <td>{item.birth_year}</td>
                   </tr>
@@ -65,6 +70,10 @@ function App() {
                 </li>
               ))}
             </ul>
+
+            {selectedCharacter !== null && (
+              <CharacterModal data={selectedCharacter} closeFn={() => setSelectedCharacter(null)}/>
+            )}
           </>
         )}
       </main>
