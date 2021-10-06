@@ -8,17 +8,27 @@ function App() {
   const [count, setCount] = useState();
   const [pageNumber, setPageNumber] = useState(1);
   const [selectedCharacter, setSelectedCharacter] = useState(null);
+  const [filterQuery, setFilterQuery] = useState('');
 
-  const getPage = async (i) => {
-    const result = await axios('https://swapi.dev/api/people/?page=' + i);
+  const getApiData = async (page, query = '') => {
+    const result = await axios('https://swapi.dev/api/people/?page=' + page + '&search=' + query);
     setCharacters(result.data.results);
     setCount(result.data.count);
-    setPageNumber(i);
+    setPageNumber(page);
     setSelectedCharacter(null);
   };
 
+  const onFilterChange = event => {
+    setFilterQuery(event.target.value);
+  };
+
+  const onFilterSubmit = event => {
+    event.preventDefault();
+    getApiData(1, filterQuery);
+  };
+
   useEffect(() => {
-    getPage(1);
+    getApiData(1);
   }, []);
 
   let maxPage = Math.ceil(count / 10);
@@ -38,6 +48,11 @@ function App() {
           <p>Loading...</p>
         ) : (
           <>
+            <form onSubmit={onFilterSubmit}>
+              <input type="search" value={filterQuery} onChange={onFilterChange} placeholder="Filter by name..."/>
+              <button type="submit">Filter</button>
+            </form>
+
             <p>Total characters: {count}</p>
             <p>Page number: {pageNumber}</p>
 
@@ -66,7 +81,7 @@ function App() {
             <ul>
               {pages.map(i => (
                 <li key={i}>
-                  <button onClick={() => getPage(i)} className={i === pageNumber ? 'active' : ''}>{i}</button>
+                  <button onClick={() => getApiData(i)} className={i === pageNumber ? 'active' : ''}>{i}</button>
                 </li>
               ))}
             </ul>
