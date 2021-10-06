@@ -30,6 +30,11 @@ function App() {
     getApiData(1, filterQuery);
   };
 
+  const resetFilter = () => {
+    setFilterQuery('');
+    getApiData(1);
+  };
+
   useEffect(() => {
     getApiData(1);
   }, []);
@@ -57,7 +62,13 @@ function App() {
             </form>
 
             {characters.length === 0 ? (
-              <p>Your search did not match any Star Wars characters.</p>
+              <>
+                <p>Your search did not match any Star Wars characters.</p>
+                <p>
+                  You can try a different search query,
+                  or <button className="text-btn" onClick={resetFilter}>display all characters</button>
+                </p>
+              </>
             ) : (
               <>
                 <p>Total characters: {count}</p>
