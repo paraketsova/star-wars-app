@@ -43,7 +43,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>Star War characters</h1>
+        <h1>Star Wars characters</h1>
       </header>
 
       <main>
