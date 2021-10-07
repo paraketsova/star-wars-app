@@ -62,13 +62,13 @@ function App() {
             </form>
 
             {characters.length === 0 ? (
-              <>
+              <div className="empty-results">
                 <p>Your search did not match any Star Wars characters.</p>
                 <p>
                   You can try a different search query,
-                  or <button className="text-btn" onClick={resetFilter}>display all characters</button>
+                  or <button onClick={resetFilter}>display all characters</button>
                 </p>
-              </>
+              </div>
             ) : (
               <>
                 <div className="counters">
@@ -81,7 +81,7 @@ function App() {
                     <tr>
                       <th className="col1">Name</th>
                       <th className="col2">Gender</th>
-                      <th>Birth year</th>
+                      <th className="col3">Birth year</th>
                     </tr>
                   </thead>
 
@@ -91,8 +91,8 @@ function App() {
                         <td className="character-name" onClick={() => setSelectedCharacter(item)}>
                           {item.name}
                         </td>
-                        <td>{item.gender}</td>
-                        <td>{item.birth_year}</td>
+                        <td className="col2">{item.gender}</td>
+                        <td className="col3">{item.birth_year}</td>
                       </tr>
                     ))}
                   </tbody>

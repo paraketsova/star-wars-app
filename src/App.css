@@ -8,6 +8,11 @@ body {
   background-color: black;
   color: white;
   font-family: 'Orbitron', sans-serif;
+  padding: 0.25rem;
+}
+
+header img {
+  max-width: 100%;
 }
 
 form input {
@@ -23,13 +28,13 @@ form button {
 
 .counters {
   display: flex;
-  width: 40rem;
+  max-width: 37rem;
   justify-content: space-between;
+  padding: 0 1rem;
   margin: 1.5rem auto 1rem auto;
 }
 
 table {
-  width: 40rem;
   border-collapse: collapse;
   margin: 0 auto;
   background-color: #eeeeee;
@@ -37,10 +42,20 @@ table {
 }
 
 .col1 {
-  width: 20rem;
+  width: 17rem;
 }
 .col2 {
   width: 10rem;
+}
+.col3 {
+  width: 8rem;
+}
+
+@media screen and (max-width: 640px) {
+  .col2,
+  .col3 {
+    display: none;
+  }
 }
 
 td, th {
@@ -65,8 +80,8 @@ ul {
   padding: 0;
 }
 li {
-  display: inline;
-  margin: 0 0.5rem;
+  display: inline-block;
+  margin: 0 0.5rem 1rem 0.5rem;
 }
 
 button {
@@ -131,6 +146,10 @@ form button:hover,
   border: 0.1rem solid black;
 }
 
-.text-btn {
+.empty-results {
+  line-height: 200%;
+}
+
+.empty-results button {
   width: inherit;
 }
