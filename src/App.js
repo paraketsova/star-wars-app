@@ -48,7 +48,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <img src="/title-logo.png" alt="STAR WARS characters"/>
+        <img src="./title-logo.png" alt="STAR WARS characters"/>
       </header>
 
       <main>
