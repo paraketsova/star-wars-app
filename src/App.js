@@ -48,7 +48,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>Star Wars characters</h1>
+        <img src="/title-logo.png" alt="STAR WARS characters"/>
       </header>
 
       <main>
@@ -58,7 +58,7 @@ function App() {
           <>
             <form onSubmit={onFilterSubmit}>
               <input type="search" value={filterQuery} onChange={onFilterChange} placeholder="Filter by name..."/>
-              <button type="submit">Filter</button>
+              <button type="submit">🔍</button>
             </form>
 
             {characters.length === 0 ? (
@@ -71,14 +71,16 @@ function App() {
               </>
             ) : (
               <>
-                <p>Total characters: {count}</p>
-                <p>Page number: {pageNumber}</p>
+                <div className="counters">
+                  <span>Total characters: {count}</span>
+                  <span>Page: {pageNumber} of {maxPage}</span>
+                </div>
 
                 <table>
                   <thead>
                     <tr>
-                      <th>Name</th>
-                      <th>Gender</th>
+                      <th className="col1">Name</th>
+                      <th className="col2">Gender</th>
                       <th>Birth year</th>
                     </tr>
                   </thead>

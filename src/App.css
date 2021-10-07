@@ -1,21 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
 .App {
   text-align: center;
 }
 
+body {
+  background-color: black;
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+}
+
+form input {
+  font-family: 'Orbitron', sans-serif;
+  padding: 0.45rem;
+}
+
+form button {
+  background-color: #FFC200;
+  margin-left: 0.5rem;
+  line-height: 165%;
+}
+
+.counters {
+  display: flex;
+  width: 40rem;
+  justify-content: space-between;
+  margin: 1.5rem auto 1rem auto;
+}
+
 table {
-  width: 30rem;
+  width: 40rem;
   border-collapse: collapse;
-  border: 1px solid black;
   margin: auto;
+  background-color: #eeeeee;
+  color: black;
+}
+
+.col1 {
+  width: 20rem;
+}
+.col2 {
+  width: 10rem;
 }
 
 td, th {
-  padding: 3px;
+  padding: 0.4rem;
   border: 1px solid black;
 }
 
 th {
-  background-color: #b0e0e6;
+  background-color: #FFC200;
 }
 
 td.character-name {
@@ -23,22 +57,31 @@ td.character-name {
 }
 
 td.character-name:hover {
-  background-color: #eee;
+  background-color: #FFCB00;
+  color: black;
 }
 
+ul {
+  padding: 0;
+}
 li {
   display: inline;
-  margin-right: 1rem;
+  margin: 0 0.5rem;
 }
 
 button {
   cursor: pointer;
-  border: 1px solid gray;
-  border-radius: 2px;
-  padding: 2px 7px;
+  width: 2rem;
+  border-radius: 0.15rem;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid #FFC200;
+  background-color: black;
+  color: #FFC200;
+  font-family: 'Orbitron', sans-serif;
 }
 button.active {
-  background-color: #b0e0e6;
+  background-color: #FFC200;
+  color: black;
 }
 
 .modal-overlay {
@@ -54,8 +97,8 @@ button.active {
 }
 
 .modal-content {
-  padding: 20px;
-  border-radius: 2px;
+  padding: 2rem;
+  border-radius: 0.15rem;
   background-color: white;
   margin: 15% auto;
   width: 80%;
@@ -63,4 +106,16 @@ button.active {
 
 .close-btn {
   margin-top: 1rem;
+  padding: 0.3rem 0.7rem;
+  background-color: #FFC200;
+  color: black;
+  border: 0.1rem solid black;
+  font-size: 1.1rem;
+  width: auto;
+}
+
+.close-btn:hover,
+form > button:hover {
+  background-color: black;
+  color: #FFC200;
 }
