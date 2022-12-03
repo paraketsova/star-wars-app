@@ -1,5 +1,19 @@
 ![Star Wars app screenshot](./screenshot.png)
 
+## 📝 **Task description**
+
+You will be creating a basic web app using [React](https://reactjs.org/) that displays Star Wars characters and provides information about them. You can include any additional libraries you want to.
+
+Make sure the application is somewhat responsive and accessible.
+
+Put in some effort making it look good as well.
+
+There are three features we want you to implement, I suggest developing them one at a time in the following order:
+
+1. List all the Star Wars characters by first and last name. Use swapi (Star Wars API) for this. The following **GET** request will retrieve a list of characters and their related information `https://swapi.dev.api/people`. It uses pagination meaning you will have to either keep requesting based on the next url that is sent as part of the response or you can implement pagination in the application as well. You can read all of the documentation for the API [here](https://swapi.dev/).
+2. Display additional information about the characters when their names are clicked. The user should also be able to hide this information again. You can pick a couple of properties to show based on what you get from the API.
+3. Implement a search feature allowing the user to filter the characters based on their first name or last name.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
